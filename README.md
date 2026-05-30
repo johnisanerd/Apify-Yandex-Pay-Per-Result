@@ -1,18 +1,22 @@
-# 🔍 Yandex Pay-Per-Result Scraper: Scrape Yandex Search Results with Python
+# 🔍 Yandex Search API (Pay Per Result): Search Results in Clean JSON
 
-> **The most efficient, reliable, and developer-friendly Yandex search scraper - pay only for results returned**
+> Pay only for the results you get. The developer-friendly way to use the Yandex Search API.
 
 **Actor page:** [apify.com/johnvc/yandex-scrape-yandex-search-results-at-scale---per-result](https://apify.com/johnvc/yandex-scrape-yandex-search-results-at-scale---per-result?fpr=9n7kx3)
 **Input schema:** [apify.com/johnvc/yandex-scrape-yandex-search-results-at-scale---per-result/input-schema](https://apify.com/johnvc/yandex-scrape-yandex-search-results-at-scale---per-result/input-schema?fpr=9n7kx3)
 
-Scrape Yandex search results with Python using the [Yandex Pay-Per-Result scraper on Apify](https://apify.com/johnvc/yandex-scrape-yandex-search-results-at-scale---per-result?fpr=9n7kx3). Returns structured JSON with organic results, ads, knowledge graph entries, inline images, and inline videos - with pay-per-result pricing so you are only charged for the search results actually returned.
+This edition of the Yandex Search API bills per result returned, so your cost ties directly to how much you collect. It queries Yandex, the dominant search engine across Russia and several Eastern European and Central Asian markets, and returns clean, structured JSON, one item per page. Each item carries the search parameters, result counts, and arrays for organic results, ads, knowledge graph, inline images, and inline videos. Supports regional domains, language and region targeting, and pagination.
 
-> Also available: [pay-per-event variant](https://apify.com/johnvc/Scrape-Yandex?fpr=9n7kx3) - better suited for high-volume runs where you expect consistent result counts per page.
+> Prefer per-page pricing instead of per-result? See the [pay-per-page edition](https://apify.com/johnvc/Scrape-Yandex?fpr=9n7kx3).
 
-## 🚀 Quick Start
+## Video Walkthrough
+
+[![Watch the walkthrough](https://img.youtube.com/vi/jREWahDGhJM/maxresdefault.jpg)](https://www.youtube.com/watch?v=jREWahDGhJM)
+
+## Quick Start
 
 ### Prerequisites
-- Python 3.9 or higher
+- Python 3.11 or higher
 - An Apify account and API key ([get a free key here](https://apify.com?fpr=9n7kx3))
 
 1. **Clone the repository**
@@ -23,7 +27,7 @@ Scrape Yandex search results with Python using the [Yandex Pay-Per-Result scrape
 
 2. **Install dependencies with UV**
    ```bash
-   # Install UV if you don't have it:
+   # Install UV if you do not have it:
    curl -LsSf https://astral.sh/uv/install.sh | sh
 
    # Install project dependencies:
@@ -42,138 +46,248 @@ Scrape Yandex search results with Python using the [Yandex Pay-Per-Result scrape
    uv run python yandex-pay-per-result-scraper.py
    ```
 
-### Alternative: Set API Key Directly
+### Alternative: set the API key directly
 ```bash
 export APIFY_API_TOKEN="your_api_key_here"
 uv run python yandex-pay-per-result-scraper.py
 ```
 
-## 🌟 Why Use This Yandex Pay-Per-Result Scraper?
+## Why Use This Yandex Search API?
 
-The [Yandex Pay-Per-Result scraper on Apify](https://apify.com/johnvc/yandex-scrape-yandex-search-results-at-scale---per-result?fpr=9n7kx3) delivers structured search result data from Yandex - the dominant search engine across Russia and several Eastern European and Central Asian markets, with its own ranking signals, regional index, and result types distinct from Western search engines.
+**Pay only for results.** Pay-per-result pricing ties your cost directly to what you collect, which suits exploratory research, keyword testing, and workloads where result density varies between queries.
 
-**Only Pay for What You Get**: Pay-per-result pricing ties your cost directly to the number of search results returned. Queries that surface fewer results cost less - making this model ideal for exploratory research, keyword testing, and workloads where result density varies significantly between queries.
+**An independent search index.** Yandex maintains its own web index with distinct rankings, regional content, and Cyrillic-language coverage not replicated elsewhere. For Russian-language research, Eastern European markets, or comparative SEO, it is a unique source.
 
-**Access the Yandex Index**: Yandex maintains an independent web index with distinct rankings, regional content, and Cyrillic-language coverage not replicated in other search engines. For research involving Russian-language content, Eastern European markets, or comparative SEO analysis, Yandex data is irreplaceable.
+**Multi-domain support.** Target `yandex.ru`, `yandex.com`, `yandex.com.tr`, and other regional domains, then combine with `lang` and `lr` for precise control over the regional index and language variant.
 
-**Multi-Domain Support**: Use the `yandex_domain` parameter to target `yandex.ru`, `yandex.com`, `yandex.com.tr`, or other regional Yandex domains. Combined with the `lang` and `lr` parameters, this gives precise control over which regional index and language variant you query.
+**Rich result types.** Beyond organic results, each page returns ads, knowledge graph entries, inline image blocks, and inline video carousels in one structured output.
 
-**Rich Result Types**: Beyond organic results, the scraper captures ads, knowledge graph entries, inline image blocks, and inline video carousels - the full range of result types Yandex surfaces for a given query, all in a single structured output.
+**Predictable, pay-per-use pricing.** Billing is per result, with no subscription, and the `max_pages` cap keeps cost under your control.
 
-**Configurable Pagination**: Set `max_pages` to collect a shallow sample or a deep dataset. The default of 2 pages covers most research use cases, while higher values support large-scale SEO audits and content gap analysis.
+**Easy to automate.** Call it from Python in a few lines, or load it as an MCP tool so assistants like Claude and Cursor can run Yandex searches for you on demand.
 
-**Production-Ready JSON Output**: All result types are returned with consistent field structures. Load directly into an SEO analysis pipeline, a competitive intelligence dashboard, or a multilingual content research workflow without additional parsing.
-
-## 🎯 Common Use Cases for Yandex Search Data
-
-**Russian-Language SEO Research**: Analyze rankings, featured snippets, and result types on Yandex for Russian-language keywords to inform content and SEO strategies targeting Russian-speaking audiences.
-
-**Eastern European Market Intelligence**: Monitor how brands, products, and topics rank on Yandex across Russia, Kazakhstan, Belarus, and other markets where Yandex has strong search share.
-
-**Multilingual Content Research**: Identify content gaps, trending topics, and authoritative sources in Cyrillic-language niches for content planning and localization projects.
-
-**Competitive SERP Analysis**: Track competitor rankings, ad presence, and knowledge graph appearances on Yandex for target keywords over time.
-
-**Academic and Linguistic Research**: Build datasets of Yandex search results for computational linguistics, information retrieval, or regional internet studies research.
-
-**Ad Intelligence**: Collect Yandex ad copy and landing page data for competitive advertising research in Russian-language markets.
-
-## ⚡ Features
+## Features
 
 ### Core Capabilities
-- **Yandex Search Index**: Queries Yandex's full search index with support for all major regional domains
-- **Pay-Per-Result Pricing**: Charged only for search results actually returned, not pages processed
-- **Multi-Domain Support**: Target `yandex.ru`, `yandex.com`, `yandex.com.tr`, and other regional domains
-- **Language and Region Control**: Use `lang` and `lr` to target specific language variants and regional indexes
-- **Configurable Pagination**: Set `max_pages` to control collection depth
-- **Rich Result Types**: Captures organic results, ads, knowledge graph, inline images, and inline videos
+- **Yandex search** across all major regional domains
+- **Language and region control** with `lang` and `lr`
+- **Rich result types**: organic, ads, knowledge graph, inline images, inline videos
+- **Pagination control** with a configurable `max_pages` cap
+- **Pay-per-result billing** tied to what you collect
 
 ### Data Quality
-- **Consistent JSON Schema**: All result types share structured, predictable field names
-- **Full Result Coverage**: Organic results, ads, knowledge graph, images, and videos in one output
-- **Position Tracking**: Result position included for every organic listing
-- **Per-Result Billing**: Charged per result returned, not per page, for accurate cost control
+- **One item per page** with a stable structure
+- **`organic_results` array** with position, title, link, snippet, and displayed link
+- **Result counts and metadata** echoed on every item
+- **Separate arrays** for ads, knowledge graph, images, and videos
+- **Consistent JSON** shape across every query
 
-## 📖 Usage Examples
+## Usage Examples
 
-### Basic Search: Scrape Yandex for Any Keyword
-
+### Basic search
 ```json
 {
-  "text": "python web scraping",
+  "text": "machine learning tutorial",
   "max_pages": 1
 }
 ```
 
-### Advanced Search: Regional Yandex Domain with Language Targeting
-
-Retrieve Russian-language results from yandex.ru with 3 pages of results.
-
+### Regional domain with language and region targeting
 ```json
 {
-  "text": "веб скрапинг на python",
+  "text": "машинное обучение учебник",
   "yandex_domain": "yandex.ru",
   "lang": "ru",
   "lr": "213",
-  "max_pages": 3
+  "max_pages": 1
 }
 ```
 
-## 🔍 Input Parameters
-
-Full input schema reference: [apify.com/johnvc/yandex-scrape-yandex-search-results-at-scale---per-result/input-schema](https://apify.com/johnvc/yandex-scrape-yandex-search-results-at-scale---per-result/input-schema?fpr=9n7kx3)
+## Input Parameters
 
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
-| `text` | `str` | YES | - | Search query |
-| `yandex_domain` | `str` | no | `"yandex.com"` | Yandex domain (e.g. `"yandex.ru"`, `"yandex.com.tr"`) |
-| `lang` | `str` | no | - | Language code (e.g. `"en"`, `"ru"`) |
-| `lr` | `str` | no | - | Region/location code (e.g. `"213"` for Moscow) |
-| `max_pages` | `int` | no | `2` | Maximum pages to scrape |
-| `output_file` | `str` | no | - | Optional output filename |
+| `text` | `string` | Yes | - | Search query. Supports any operator Yandex supports, e.g. `site:wikipedia.org python`. |
+| `yandex_domain` | `string` | No | `yandex.com` | Yandex domain, e.g. `yandex.ru`, `yandex.com.tr`. |
+| `lang` | `string` | No | (domain default) | Language code, e.g. `en`, `ru`. Comma-separated for multi-language. |
+| `lr` | `string` | No | (domain default) | Country or region ID, e.g. `84` (USA), `213` (Moscow), `225` (Russia). |
+| `max_pages` | `integer` | No | `2` | Maximum pages to fetch; `0` = unlimited. Each page is one paid item. |
+| `output_file` | `string` | No | - | Optional filename to save results. |
 
-## 📊 Output Format
+## Output Format
 
-Each run returns a dataset of structured JSON objects. Sample output:
+A real result for `machine learning tutorial` (one item per page; the `organic_results` array is trimmed to a single result here).
 
 ```json
 {
-  "query": "best python web scraping libraries",
+  "text": "machine learning tutorial",
   "yandex_domain": "yandex.com",
   "lang": "en",
-  "max_pages": 2,
-  "pages_processed": 2,
+  "lr": "84",
+  "max_pages": 1,
+  "search_timestamp": "2026-05-29T11:51:33",
+  "total_results_found": 10,
+  "pages_processed": 1,
+  "page_number": 1,
+  "search_domain_description": "United States",
+  "search_language_description": "English",
+  "results_per_page": 10,
   "organic_results": [
     {
-      "position": 1,
-      "title": "Top Python Web Scraping Libraries in 2025",
-      "link": "https://realpython.com/python-web-scraping-libraries",
-      "displayed_link": "realpython.com",
-      "snippet": "A comprehensive comparison of the most popular Python scraping libraries including Scrapy, BeautifulSoup, Playwright, and httpx..."
-    },
-    {
       "position": 2,
-      "title": "Beautiful Soup vs Scrapy: Which Should You Use?",
-      "link": "https://towardsdatascience.com/example",
-      "displayed_link": "towardsdatascience.com",
-      "snippet": "Both libraries are excellent choices depending on your use case. Here is a breakdown of when to use each..."
+      "title": "Machine Learning Tutorial - GeeksforGeeks",
+      "link": "https://www.geeksforgeeks.org/machine-learning/machine-learning/",
+      "snippet": "Machine Learning is mainly divided into three core types: Supervised Learning: Trains models on labeled data to predict or classify new, unseen data.",
+      "displayed_link": "geeksforgeeks.org > machine-learning > machine"
     }
   ],
-  "ads": [],
-  "knowledge_graph": null,
+  "ads_results": [],
+  "knowledge_graph": [],
   "inline_images": [],
-  "inline_videos": [],
-  "search_metadata": {
-    "total_results_found": 94,
-    "pages_processed": 2
+  "inline_videos": []
+}
+```
+
+Each page item echoes the search parameters and result counts, lists every organic listing in `organic_results` (with position, title, link, snippet, and displayed link; video and news results may also include `duration` and `date`), and returns separate `ads_results`, `knowledge_graph`, `inline_images`, and `inline_videos` arrays.
+
+---
+
+## Use as an MCP tool
+
+You can load the Yandex Search API as an MCP tool so assistants call it for you. The MCP server URL preloads just this one Actor:
+
+```
+https://mcp.apify.com/?tools=actors,docs,johnvc/yandex-scrape-yandex-search-results-at-scale---per-result
+```
+
+Authenticate with OAuth in the browser when offered, or with your Apify API token (the same `APIFY_API_TOKEN` used by the Python example). Get a token at https://console.apify.com/settings/integrations and a free Apify account at https://apify.com?fpr=9n7kx3 .
+
+## Install in Claude Cowork Desktop
+
+![Install in Claude Cowork Desktop](https://raw.githubusercontent.com/johnisanerd/ApifyPublicData/main/assets/guides/install_mcp_into_claude_desktop.png)
+
+Cowork is the desktop app's automation mode. To give it the Yandex Search API as a tool, add the Apify MCP server as a connector.
+
+1. Open the Claude desktop app and go to **Settings → Connectors** (or **Settings → Developer → Edit Config** to edit `claude_desktop_config.json` directly).
+   - macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
+   - Windows: `%APPDATA%\Claude\claude_desktop_config.json`
+2. Add the Apify MCP server, preloaded with only this Actor:
+
+```json
+{
+  "mcpServers": {
+    "apify": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://mcp.apify.com/?tools=actors,docs,johnvc/yandex-scrape-yandex-search-results-at-scale---per-result"
+      ]
+    }
   }
 }
 ```
 
+3. Restart the app. When Cowork first calls the tool, complete the OAuth prompt in your browser, or add your Apify API token in the connector settings to skip OAuth.
+4. In a Cowork chat, confirm the tool is available and ask it to run the Yandex Search API.
+
+Download the desktop app and start a free trial: https://claude.ai/referral/uIlpa7nPLg
+More help: https://docs.apify.com/platform/integrations/claude-desktop
+
+## Install in Claude Code
+
+![Install in Claude Code](https://raw.githubusercontent.com/johnisanerd/ApifyPublicData/main/assets/guides/install_mcp_into_claude_code.png)
+
+Claude Code is the command-line tool. Add the Actor's MCP server with one command:
+
+```bash
+claude mcp add --transport http apify \
+  "https://mcp.apify.com/?tools=actors,docs,johnvc/yandex-scrape-yandex-search-results-at-scale---per-result"
+```
+
+To use a token instead of browser OAuth:
+
+```bash
+claude mcp add --transport http apify \
+  "https://mcp.apify.com/?tools=actors,docs,johnvc/yandex-scrape-yandex-search-results-at-scale---per-result" \
+  --header "Authorization: Bearer YOUR_APIFY_TOKEN"
+```
+
+Then verify with `claude mcp list`, or run `/mcp` inside a session. Ask Claude Code to call the Yandex Search API.
+
+Try Claude Code free: https://claude.ai/referral/uIlpa7nPLg
+Claude Code MCP docs: https://code.claude.com/docs/en/mcp
+
+## Install in Claude (website)
+
+![Install in Claude (website)](https://raw.githubusercontent.com/johnisanerd/ApifyPublicData/main/assets/guides/install_mcp_into_claude_ai.png)
+
+On claude.ai you add Apify as a connector, then enable just this Actor's tool.
+
+1. Go to **Settings → Connectors → Browse connectors** and search for **Apify MCP server**. Install it (enable or update if prompted).
+2. When connecting, authenticate with your Apify API token, and enable the tool `johnvc/yandex-scrape-yandex-search-results-at-scale---per-result`.
+3. In any chat, open **+ → Connectors** and turn on **Apify**.
+4. Alternatively, choose **Add custom connector** and paste the full MCP URL `https://mcp.apify.com/?tools=actors,docs,johnvc/yandex-scrape-yandex-search-results-at-scale---per-result`, using OAuth when prompted.
+5. Ask Claude to run the Yandex Search API.
+
+Open Claude on the web: https://claude.ai
+
+## Install in Cursor
+
+![Install in Cursor](https://raw.githubusercontent.com/johnisanerd/ApifyPublicData/main/assets/guides/install_mcp_into_cursor.png)
+
+Cursor reads MCP servers from a project file at `.cursor/mcp.json`.
+
+1. In your project, create `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "apify": {
+      "url": "https://mcp.apify.com/?tools=actors,docs,johnvc/yandex-scrape-yandex-search-results-at-scale---per-result"
+    }
+  }
+}
+```
+
+2. If you prefer token auth over browser OAuth, add a header:
+
+```json
+{
+  "mcpServers": {
+    "apify": {
+      "url": "https://mcp.apify.com/?tools=actors,docs,johnvc/yandex-scrape-yandex-search-results-at-scale---per-result",
+      "headers": { "Authorization": "Bearer YOUR_APIFY_TOKEN" }
+    }
+  }
+}
+```
+
+3. Open **Cursor → Settings → MCP** and confirm the **apify** server is connected (green dot).
+4. In Composer or Chat, ask Cursor to call the Yandex Search API.
+
+New to Cursor? Get it here: https://cursor.com/referral?code=XQP4VBLI3NNX
+
+## Install in ChatGPT
+
+![Install in ChatGPT](https://raw.githubusercontent.com/johnisanerd/ApifyPublicData/main/assets/guides/install_mcp_into_ChatGPT.png)
+
+ChatGPT connects to the Apify MCP server through Developer mode (available on ChatGPT Pro, Plus, Business, Enterprise, and Education plans).
+
+1. Click your profile icon, then go to **Settings > Apps**. If you do not see a **Create app** button, open **Advanced settings** and enable **Developer mode**.
+2. Click **Create app** and fill out the form:
+   - **Name:** Apify
+   - **MCP Server URL:** `https://mcp.apify.com/?tools=actors,docs,johnvc/yandex-scrape-yandex-search-results-at-scale---per-result`
+   - **Authentication:** OAuth
+3. Click **Create** and authorize the connection with Apify.
+4. To use the app in a conversation, click **+** in the chat, choose **Developer mode**, and select **Apify**.
+
+More help: https://docs.apify.com/platform/integrations/mcp
+
 ---
 
-[**Made with love**](https://apify.com/johnvc?fpr=9n7kx3)
+[**Made with care**](https://apify.com/johnvc?fpr=9n7kx3)
 
-*Transform your data collection with the most reliable and efficient scraper on the market.*
+*Use the Yandex Search API to power SEO research, market intelligence, and multilingual content analysis with reliable, structured results.*
 
-Last Updated: 2026.05.29
+Last Updated: 2026.05.30
