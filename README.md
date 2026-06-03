@@ -292,4 +292,4 @@ More help: https://docs.apify.com/platform/integrations/mcp
 
 *Use the Yandex Search API to power SEO research, market intelligence, and multilingual content analysis with reliable, structured results.*
 
-Last Updated: 2026.06.03
+Last Updated: 2026.06.04
