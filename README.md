@@ -1,3 +1,5 @@
+**English** | [Русский](README.ru.md)
+
 # 🔍 Yandex Search API (Pay Per Result): Search Results in Clean JSON
 
 > Pay only for the results you get. The developer-friendly way to use the Yandex Search API.

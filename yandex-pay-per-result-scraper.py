@@ -28,6 +28,7 @@ if not APIFY_API_TOKEN:
 client = ApifyClient(APIFY_API_TOKEN)
 
 # Inputs are kept small so the first run is inexpensive: one page of results.
+# Параметры небольшие, чтобы первый запуск был дешёвым: одна страница результатов.
 run_input = {
     "text": "machine learning tutorial",
     "yandex_domain": "yandex.com",
@@ -35,6 +36,17 @@ run_input = {
     "lr": "84",
     "max_pages": 1,
 }
+
+# Russian-market example. Swap it in to search the Russian index in Russian,
+# localized to Moscow (lr=213). | Пример для российского рынка: поиск в русском
+# индексе на русском языке с локализацией по Москве (lr=213).
+# run_input = {
+#     "text": "машинное обучение учебник",
+#     "yandex_domain": "yandex.ru",
+#     "lang": "ru",
+#     "lr": "213",
+#     "max_pages": 1,
+# }
 
 print(f"Searching Yandex for: {run_input['text']}")
 run = client.actor("johnvc/yandex-scrape-yandex-search-results-at-scale---per-result").call(run_input=run_input)
