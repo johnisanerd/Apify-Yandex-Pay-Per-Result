@@ -60,7 +60,7 @@ uv run python yandex-pay-per-result-scraper.py
 
 **An independent search index.** Yandex maintains its own web index with distinct rankings, regional content, and Cyrillic-language coverage not replicated elsewhere. For Russian-language research, Eastern European markets, or comparative SEO, it is a unique source.
 
-**Multi-domain support.** Target `yandex.ru`, `yandex.com`, `yandex.com.tr`, and other regional domains, then combine with `lang` and `lr` for precise control over the regional index and language variant.
+**Multi-domain support.** Target `yandex.ru`, `yandex.com`, `yandex.com.tr`, `yandex.by`, `yandex.kz`, and `yandex.uz`, then combine with `lang` and `lr` for precise control over the regional index and language variant.
 
 **Rich result types.** Beyond organic results, each page returns ads, knowledge graph entries, inline image blocks, and inline video carousels in one structured output.
 
