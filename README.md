@@ -71,14 +71,15 @@ uv run python yandex-pay-per-result-scraper.py
 ## Features
 
 ### Core Capabilities
-- **Yandex search** across all major regional domains
+- **Yandex search** across 6 supported regional domains
+- **A la carte result types**: toggle organic, ads, knowledge graph, inline images, and inline videos independently; you pay only for the types you turn on
 - **Language and region control** with `lang` and `lr`
-- **Rich result types**: organic, ads, knowledge graph, inline images, inline videos
-- **Pagination control** with a configurable `max_pages` cap
+- **Sort and recency filters**: `sort_mode` (relevance or date) and `period` (all, day, last_two_weeks, month)
+- **Parallel multi-page pagination** with a configurable `max_pages` cap
 - **Pay-per-result billing** tied to what you collect
 
 ### Data Quality
-- **One item per page** with a stable structure
+- **One item per result type per page**, tagged with `item_type` and `result_count`
 - **`organic_results` array** with position, title, link, snippet, and displayed link
 - **Result counts and metadata** echoed on every item
 - **Separate arrays** for ads, knowledge graph, images, and videos
@@ -110,18 +111,27 @@ uv run python yandex-pay-per-result-scraper.py
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
 | `text` | `string` | Yes | - | Search query. Supports any operator Yandex supports, e.g. `site:wikipedia.org python`. |
-| `yandex_domain` | `string` | No | `yandex.com` | Yandex domain, e.g. `yandex.ru`, `yandex.com.tr`. |
+| `include_organic_results` | `boolean` | No | `true` | Return organic results (`item_type` `organic`). |
+| `include_ads` | `boolean` | No | `false` | Return paid ads when present (`item_type` `ads`). |
+| `include_knowledge_graph` | `boolean` | No | `false` | Return the knowledge graph card when present (`item_type` `knowledge_graph`). |
+| `include_inline_images` | `boolean` | No | `false` | Return the inline image strip (`item_type` `inline_images`). |
+| `include_inline_videos` | `boolean` | No | `false` | Return the inline video carousel (`item_type` `inline_videos`). |
+| `yandex_domain` | `string` | No | `yandex.com` | Yandex domain, e.g. `yandex.ru`, `yandex.com.tr` (6 supported). |
 | `lang` | `string` | No | (domain default) | Language code, e.g. `en`, `ru`. Comma-separated for multi-language. |
 | `lr` | `string` | No | (domain default) | Country or region ID, e.g. `84` (USA), `213` (Moscow), `225` (Russia). |
-| `max_pages` | `integer` | No | `2` | Maximum pages to fetch; `0` = unlimited. Each page is one paid item. |
+| `max_pages` | `integer` | No | `2` | Maximum pages to fetch; `0` = unlimited. Applies to every selected result type. |
+| `sort_mode` | `string` | No | `relevance` | Result ordering: `relevance` or `date` (newest first). |
+| `period` | `string` | No | `all` | Recency window: `all`, `day`, `last_two_weeks`, `month`. |
 | `output_file` | `string` | No | - | Optional filename to save results. |
 
 ## Output Format
 
-A real result for `machine learning tutorial` (one item per page; the `organic_results` array is trimmed to a single result here).
+Each selected result type present on a page is returned as its own dataset item, tagged with `item_type` (`organic`, `ads`, `knowledge_graph`, `inline_images`, or `inline_videos`) and a `result_count`; each item is billed as one result. A representative `organic` item for `machine learning tutorial` is shown below (the `organic_results` array is trimmed to a single result here).
 
 ```json
 {
+  "item_type": "organic",
+  "result_count": 10,
   "text": "machine learning tutorial",
   "yandex_domain": "yandex.com",
   "lang": "en",
@@ -292,4 +302,4 @@ More help: https://docs.apify.com/platform/integrations/mcp
 
 *Use the Yandex Search API to power SEO research, market intelligence, and multilingual content analysis with reliable, structured results.*
 
-Last Updated: 2026.06.11
+Last Updated: 2026.06.13
