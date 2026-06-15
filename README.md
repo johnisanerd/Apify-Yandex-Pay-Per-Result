@@ -302,4 +302,10 @@ More help: https://docs.apify.com/platform/integrations/mcp
 
 *Use the Yandex Search API to power SEO research, market intelligence, and multilingual content analysis with reliable, structured results.*
 
+## Featured Tasks
+
+Ready-to-run examples on the Apify Store.
+
+- [Export Yandex Search Results to CSV](https://apify.com/johnvc/yandex-scrape-yandex-search-results-at-scale---per-result/examples/export-yandex-search-results-to-csv?fpr=9n7kx3)
+
 Last Updated: 2026.06.15
