@@ -308,4 +308,4 @@ Ready-to-run examples on the Apify Store.
 
 - [Export Yandex Search Results to CSV](https://apify.com/johnvc/yandex-scrape-yandex-search-results-at-scale---per-result/examples/export-yandex-search-results-to-csv?fpr=9n7kx3)
 
-Last Updated: 2026.09.03
+Last Updated: 2026.09.04
