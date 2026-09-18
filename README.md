@@ -1,15 +1,15 @@
 **English** | [Русский](README.ru.md)
 
-# 🔍 Yandex Search API (Pay Per Result): Search Results in Clean JSON
+# 🔍 Yandex Search API: Search Results in Clean JSON, Billed Per Page
 
-> Pay only for the results you get. The developer-friendly way to use the Yandex Search API.
+> One flat fee per page of results, every result type included. The developer-friendly way to use the Yandex Search API.
 
 **Actor page:** [apify.com/johnvc/yandex-scrape-yandex-search-results-at-scale---per-result](https://apify.com/johnvc/yandex-scrape-yandex-search-results-at-scale---per-result?fpr=9n7kx3)
 **Input schema:** [apify.com/johnvc/yandex-scrape-yandex-search-results-at-scale---per-result/input-schema](https://apify.com/johnvc/yandex-scrape-yandex-search-results-at-scale---per-result/input-schema?fpr=9n7kx3)
 
-This edition of the Yandex Search API bills per result returned, so your cost ties directly to how much you collect. It queries Yandex, the dominant search engine across Russia and several Eastern European and Central Asian markets, and returns clean, structured JSON, one item per page. Each item carries the search parameters, result counts, and arrays for organic results, ads, knowledge graph, inline images, and inline videos. Supports regional domains, language and region targeting, and pagination.
+This Yandex Search API bills a one-time Search Start fee per run plus a flat fee per page of results, so cost scales with the number of pages you fetch, not with how many result types you enable. It queries Yandex, the dominant search engine across Russia and several Eastern European and Central Asian markets, and returns clean, structured JSON, one item per result type per page. Each item carries the search parameters, result counts, and arrays for organic results, ads, knowledge graph, inline images, and inline videos. Supports regional domains, language and region targeting, and pagination.
 
-> Prefer per-page pricing instead of per-result? See the [pay-per-page edition](https://apify.com/johnvc/Scrape-Yandex?fpr=9n7kx3).
+> This Actor was originally billed per result and keeps "per-result" in its URL and this repo name so existing links keep working. It now bills per page, at the same prices as our other Yandex listing, [Scrape Yandex](https://apify.com/johnvc/Scrape-Yandex?fpr=9n7kx3).
 
 ## Video Walkthrough
 
@@ -56,7 +56,7 @@ uv run python yandex-pay-per-result-scraper.py
 
 ## Why Use This Yandex Search API?
 
-**Pay only for results.** Pay-per-result pricing ties your cost directly to what you collect, which suits exploratory research, keyword testing, and workloads where result density varies between queries.
+**One price per page.** A page is billed once however many result types it returns, and a page that returns nothing for your selection is not billed, which suits exploratory research, keyword testing, and workloads where result density varies between queries.
 
 **An independent search index.** Yandex maintains its own web index with distinct rankings, regional content, and Cyrillic-language coverage not replicated elsewhere. For Russian-language research, Eastern European markets, or comparative SEO, it is a unique source.
 
@@ -64,7 +64,7 @@ uv run python yandex-pay-per-result-scraper.py
 
 **Rich result types.** Beyond organic results, each page returns ads, knowledge graph entries, inline image blocks, and inline video carousels in one structured output.
 
-**Predictable, pay-per-use pricing.** Billing is per result, with no subscription, and the `max_pages` cap keeps cost under your control.
+**Predictable, pay-per-use pricing.** Billing is per page plus a one-time Search Start fee per run, with no subscription, and the `max_pages` cap keeps cost under your control.
 
 **Easy to automate.** Call it from Python in a few lines, or load it as an MCP tool so assistants like Claude and Cursor can run Yandex searches for you on demand.
 
@@ -72,11 +72,11 @@ uv run python yandex-pay-per-result-scraper.py
 
 ### Core Capabilities
 - **Yandex search** across 6 supported regional domains
-- **A la carte result types**: toggle organic, ads, knowledge graph, inline images, and inline videos independently; you pay only for the types you turn on
+- **A la carte result types**: toggle organic, ads, knowledge graph, inline images, and inline videos independently; enabling more types does not raise the per-page price
 - **Language and region control** with `lang` and `lr`
 - **Sort and recency filters**: `sort_mode` (relevance or date) and `period` (all, day, last_two_weeks, month)
 - **Parallel multi-page pagination** with a configurable `max_pages` cap
-- **Pay-per-result billing** tied to what you collect
+- **Per-page billing**: one Search Start fee per run, then a flat fee per page delivered
 
 ### Data Quality
 - **One item per result type per page**, tagged with `item_type` and `result_count`

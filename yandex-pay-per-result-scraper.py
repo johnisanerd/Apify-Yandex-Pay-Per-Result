@@ -1,15 +1,15 @@
 """
-Example: call the Yandex Search API (Pay Per Result) Apify Actor from Python.
+Example: call the Yandex Search API Apify Actor from Python.
 
 Get a free Apify API key at: https://apify.com?fpr=9n7kx3
 Set it in a .env file (see .env.example) or export APIFY_API_TOKEN.
 
-The Actor is billed per result returned: each selected result type present on a
-page is one paid dataset item, so you pay only for the types you turn on. The
-example fetches a single page and only a couple of result types so the first run
-is inexpensive; raise max_pages or enable more types when you want deeper coverage.
+The Actor bills a one-time Search Start fee per run plus a flat fee per page of
+results. A page is billed once however many result types it returns, so enabling
+more types does not raise the price. The example fetches a single page so the
+first run is inexpensive; raise max_pages when you want deeper coverage.
 
-Also available: a pay-per-page edition at https://apify.com/johnvc/Scrape-Yandex?fpr=9n7kx3
+Same prices as our other Yandex listing: https://apify.com/johnvc/Scrape-Yandex?fpr=9n7kx3
 """
 
 import os
