@@ -319,4 +319,4 @@ Open a ready-to-send prompt about the Yandex Search API in the AI of your choice
 - 🅒 [Copilot](https://copilot.microsoft.com/?q=Using%20the%20Yandex%20Search%20API%20on%20Apify%20%28https://apify.com/johnvc/yandex-scrape-yandex-search-results-at-scale---per-result?fpr=9n7kx3%29%2C%20walk%20me%20through%20this%20use%20case:%20%22Get%20Yandex%20SERP%20data%20in%20Claude%20via%20MCP%22.%20Show%20me%20the%20input%20JSON%2C%20the%20output%20fields%2C%20and%20how%20to%20automate%20it%20with%20the%20API%20or%20MCP.)
 <!-- ask-ai:end -->
 
-Last Updated: 2026.09.22
+Last Updated: 2026.10.27
